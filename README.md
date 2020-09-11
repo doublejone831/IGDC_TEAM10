@@ -1,0 +1,2 @@
+# IGDC_TEAM10
+IGDC 10팀 프로젝트
