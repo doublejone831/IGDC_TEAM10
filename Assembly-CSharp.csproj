@@ -63,9 +63,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\DataBaseManager.cs" />
-    <Compile Include="Assets\ItemData.cs" />
-    <Compile Include="Assets\JournalData.cs" />
+    <Compile Include="Assets\Scripts\DataBaseManager.cs" />
+    <Compile Include="Assets\Scripts\InventorySlot.cs" />
+    <Compile Include="Assets\Scripts\ItemData.cs" />
+    <Compile Include="Assets\Scripts\JournalData.cs" />
+    <Compile Include="Assets\Scripts\Main.cs" />
+    <Compile Include="Assets\Scripts\MainUI.cs" />
+    <Compile Include="Assets\Scripts\ObjectPick.cs" />
+    <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\SceneLoader.cs" />
+    <Compile Include="Assets\Scripts\Tuto1DoorClick.cs" />
+    <Compile Include="Assets\Scripts\inventory.cs" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.7f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
