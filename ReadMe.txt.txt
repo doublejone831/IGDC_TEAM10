@@ -15,3 +15,4 @@
 이종혁/ 20200914/22:42/Script 1(Tuto1DoorClick), Scene 1개(Tutorial1) upload
 장지원/20200918/Inventory 작업 시작 - slot과 기본 인벤토리 틀작업시작
 ㅇㅜㅊㅔㄹㅣㄴ/20200918/Character Animation
+이종혁/ 20200919 / 04:21
