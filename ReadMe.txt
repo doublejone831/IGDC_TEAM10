@@ -16,3 +16,4 @@
 장지원/20200918/Inventory 작업 시작 - slot과 기본 인벤토리 틀작업시작
 ㅇㅜㅊㅔㄹㅣㄴ/20200918/Character Animation
 KimGyuri/Plz working computer it's all my fault
+이종혁/20200924/22:33/PlayerController에 Json유틸리티 이용 기본적 데이터 저장기능 추가, 아이콘 및 ui 스프라이트 초안 추가

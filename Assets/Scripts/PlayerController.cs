@@ -5,53 +5,99 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody2D player;
+    SpriteRenderer spriteRenderer;
     public float maxSpeed;
-    Vector3 pos;
+    public float ymax;
+    Animator anim;
 
-    // Start is called before the first frame update
-    void Start()
+    public PlayerData playerData;
+    [ContextMenu("Into Json Data")]
+    void SavePlayerDataToJson()
+    {
+        string jsonData = JsonUtility.ToJson(playerData, true);
+        string path = Path.Combine(Application.dataPath, "playerData.json");
+        File.WriteAllText(path, jsonData);
+    }
+
+    [ContextMenu("From File to game")]
+
+    void LoadPlayerDataToJson()
+    {
+        string path = Path.Combine(Application.dataPath, "playerData.json");
+        string jsonData = File.ReadAllText(path);
+        playerData = JsonUtility.FromJson<PlayerData>(jsonData);
+    }
+
+    void Awake()
     {
         player = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+        if (Input.GetButtonUp("Horizontal")) //Stop
+        {
+            player.velocity = new Vector2(player.velocity.normalized.x * 0.5f, player.velocity.y);
+        }
+        if (Input.GetButtonUp("Vertical")) //Stop
+        {
+            player.velocity = new Vector2(player.velocity.normalized.x, player.velocity.y * 0.5f);
+        }
+
+        if (Input.GetButton("Horizontal"))
+        {
+            spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == 1;
+        }
+
+
+
     }
 
     private void FixedUpdate()
     {
-        pos = this.player.transform.position;
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-
-        player.AddForce(Vector2.right * moveHorizontal, ForceMode2D.Impulse);
-        player.AddForce(Vector2.up * moveVertical, ForceMode2D.Impulse);
-
-        if(player.velocity.x>maxSpeed)
+        if (Mathf.Abs(player.velocity.x) < 0.3f)//Parameter change
         {
-            player.velocity = new Vector2(maxSpeed, player.velocity.y);
+            anim.SetBool("isWalking", false);
         }
+        else
+        {
+            anim.SetBool("isWalking", true);
+        }
+
+        if (Mathf.Abs(player.velocity.y) >= 0.3f)
+        {
+            anim.SetBool("isWalking", true);
+        }
+
+        float rmove = Input.GetAxisRaw("Horizontal");
+        float umove = Input.GetAxisRaw("Vertical");
+
+        player.AddForce(Vector2.right * rmove, ForceMode2D.Impulse);
+        player.AddForce(Vector2.up * umove, ForceMode2D.Impulse);
+
+        if (player.velocity.x > maxSpeed)
+            player.velocity = new Vector2(maxSpeed, player.velocity.y);
         else if (player.velocity.x < maxSpeed * (-1))
             player.velocity = new Vector2(maxSpeed * (-1), player.velocity.y);
 
-        if (player.velocity.y > maxSpeed)
+        if (player.velocity.y > ymax)
         {
-            player.velocity = new Vector2(player.velocity.x, maxSpeed);
+            player.velocity = new Vector2(player.velocity.x, ymax);
         }
-        else if (player.velocity.y < maxSpeed * (-1))
+        else if (player.velocity.y < ymax * (-1))
         {
-            player.velocity = new Vector2(player.velocity.x, maxSpeed * (-1));
-        }
-
-        if (player.transform.position.y > -4)
-        {
-            player.transform.position = new Vector3(pos.x, pos.y, -1);
-        }
-        if (player.transform.position.y < -4)
-        {
-            player.transform.position = new Vector3(pos.x, pos.y, -3);
+            player.velocity = new Vector2(player.velocity.x, ymax * (-1));
         }
     }
+}
+
+[System.Serializable]
+public class PlayerData
+{
+    public string name;
+    public string itemcode;
 }
