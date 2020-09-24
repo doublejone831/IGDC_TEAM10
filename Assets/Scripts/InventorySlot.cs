@@ -12,7 +12,11 @@ public class InventorySlot : MonoBehaviour{
         Item_name.text = _item.ItemName;
         Item_Icon.sprite = _item.ItemImage;
     }
-
+    
+    public void OnMouseOver()
+    {
+        
+    }
     public void RemoveItem(){
         Item_FlaverText.text = " ";
         Item_name.text = " ";
