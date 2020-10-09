@@ -19,3 +19,4 @@
 이종혁/20200924/22:33/PlayerController에 Json유틸리티 이용 기본적 데이터 저장기능 추가, 아이콘 및 ui 스프라이트 초안 추가
 장지원/20200924/Inventory 팝업 및 아이템 띄우기 구현중
 김규리/20200925/player idle sprite 추가, run sprite 추가
+이종혁/20201009/MCScene Script 추가(씬 이동시에도 오브젝트 유지)
