@@ -15,5 +15,7 @@
 이종혁/ 20200914/22:42/Script 1(Tuto1DoorClick), Scene 1개(Tutorial1) upload
 장지원/20200918/Inventory 작업 시작 - slot과 기본 인벤토리 틀작업시작
 ㅇㅜㅊㅔㄹㅣㄴ/20200918/Character Animation
-KimGyuri/Plz working computer it's all my fault
+김규리/20200918/git push 안되는 문제 해결
 이종혁/20200924/22:33/PlayerController에 Json유틸리티 이용 기본적 데이터 저장기능 추가, 아이콘 및 ui 스프라이트 초안 추가
+장지원/20200924/Inventory 팝업 및 아이템 띄우기 구현중
+김규리/20200925/player idle sprite 추가, run sprite 추가
