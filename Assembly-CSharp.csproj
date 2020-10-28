@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\InventorySlot.cs" />
     <Compile Include="Assets\Scripts\ItemData.cs" />
     <Compile Include="Assets\Scripts\JournalData.cs" />
+    <Compile Include="Assets\Scripts\MCScene.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\MainUI.cs" />
     <Compile Include="Assets\Scripts\ObjectPick.cs" />
