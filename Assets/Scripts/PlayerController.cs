@@ -10,6 +10,11 @@ public class PlayerController : MonoBehaviour
     public float ymax;
     Animator anim;
 
+    public AudioClip audioMove;
+    public AudioClip audioItem;
+    public AudioClip audioDie;
+    public AudioClip audioFinish;
+
     public PlayerData playerData;
     [ContextMenu("Into Json Data")]
     void SavePlayerDataToJson()
@@ -33,8 +38,27 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
+    void PlaySound(string action)
+    {
+        switch (action)
+        {
+            case "ITEM":
+                audioSource.clip = audioItem;
+                break;
+            case "DIE":
+                audioSource.clip = audioDie;
+                break;
+            case "FINISH":
+                audioSource.clip = audioFinish;
+                break;
+            case "MOVE":
+                audioSource.clip = audioMove;
+                break;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -42,10 +66,14 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonUp("Horizontal")) //Stop
         {
             player.velocity = new Vector2(player.velocity.normalized.x * 0.5f, player.velocity.y);
+            PlaySound("MOVE");
+            audioSource.Play();
         }
         if (Input.GetButtonUp("Vertical")) //Stop
         {
             player.velocity = new Vector2(player.velocity.normalized.x, player.velocity.y * 0.5f);
+            PlaySound("MOVE");
+            audioSource.Play();
         }
 
         if (Input.GetButton("Horizontal"))
