@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -11,22 +12,21 @@ public class inventory : MonoBehaviour{
 
     private List<ItemData> InventoryItemList; // 가지고 있는 아이템 리스트
 
-    public GameObject on; //인벤토리 활성화 비활성화
-    public GameObject go;
+    public GameObject on; //
     public Transform tf; // slot들의 부모객체
     private int SelectedItem; // 아이템 선택
     private bool activated; // 인벤 활성화시 on
-    private bool ItemActivated; // 아이템 활성화 체크
-    private bool StopKeyInput; // 키입력제한 (사용 여부 화면 출력시)
-    private bool PreventExec; // 중복 실행 제한
+ 
 
-    private WaitForSeconds Waiting = new WaitForSeconds(0.01f);
+
+    private WaitForSeconds waittime = new WaitForSeconds(0.01f);
 
    
     void Start()
     {
         InventoryItemList = new List<ItemData>();//나중에 주인공 객체가 가지고 있는 아이템 리스트 불러오기로 변경
         slots = tf.GetComponentsInChildren<InventorySlot>();
+        activated = false;
         
     }
 
@@ -48,31 +48,89 @@ public class inventory : MonoBehaviour{
             slots[i].AddItem(InventoryItemList[i]);
         }
     } // 각 슬롯에 가지고있는 아이템 리스트의 아이템들을 대입.출력
- 
+  
+    public void Selecteditem()
+    {
+        StopAllCoroutines();
+
+        if (InventoryItemList.Count > 0)
+        {
+            Color color = slots[0].selected_Item.GetComponent<Image>().color;
+            color.a = 0f;
+            for (int i = 0; i < InventoryItemList.Count; i++)
+                slots[i].selected_Item.GetComponent<Image>().color = color;
+
+            
+        }
+    }
 
 
     // Update is called once per frame
     void Update(){
-        if (!StopKeyInput)
-        {
+ 
             if (Input.GetKeyDown(KeyCode.I))
             {
                 activated = !activated;
+                Debug.Log("눌림");
 
-                if (activated)
+                if (activated == true)
                 {
-                    //오디오
+                    
                     on.SetActive(true);
-                    go.SetActive(true);
-                    ItemActivated = false;
+                    Debug.Log("켜짐");
+       
                 }
                 else
                 {
-                    go.SetActive(false);
-                    ItemActivated = false;
+ 
+                    on.SetActive(false);
+                    Debug.Log("꺼짐");
+                    
                 }
+
+
             }
-        }
+
+            if (activated)
+            {
+                if (Input.GetKeyDown(KeyCode.DownArrow))
+                {
+                    if (SelectedItem < InventoryItemList.Count - 4)
+                        SelectedItem += 4;
+                    else
+                        SelectedItem %= 4;
+
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (SelectedItem > 1)
+                        SelectedItem -= 4;
+                    else
+                        SelectedItem = InventoryItemList.Count - 4 - SelectedItem;
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (SelectedItem < InventoryItemList.Count - 1)
+                        SelectedItem++;
+                    else
+                        SelectedItem = 0;
+                }
+                else if (Input.GetKeyDown(KeyCode.UpArrow))
+                {
+                    if (SelectedItem > 0)
+                        SelectedItem--;
+                    else
+                        SelectedItem = InventoryItemList.Count - 1;
+
+                }
+                else if (Input.GetKeyDown(KeyCode.Z))
+                {
+                    //메시지창 출력
+                }
+            }//아이템 활성화시 키입력 처리
+     
 
     }
+
+
 }

@@ -7,6 +7,7 @@ public class InventorySlot : MonoBehaviour{
     public Image Item_Icon;
     public Text Item_FlaverText;
     public Text Item_name;
+    public GameObject selected_Item;
     public void AddItem(ItemData _item){
         Item_FlaverText.text = _item.ItemFlavorText;
         Item_name.text = _item.ItemName;
