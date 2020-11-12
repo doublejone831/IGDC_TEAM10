@@ -20,7 +20,7 @@ public class Tuto1DoorClick : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (player.transform.position.x >= 8)
+        if ((player.transform.position.x < target.transform.position.x+1) && (player.transform.position.x > target.transform.position.x-1))
         {
             DoorTrigger = true;
         }
