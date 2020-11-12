@@ -14,13 +14,13 @@ public class Tuto1DoorClick : MonoBehaviour
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        //플레이어 찾기
     }
         
-   
 
     void FixedUpdate()
     {
-        if ((player.transform.position.x < target.transform.position.x+1) && (player.transform.position.x > target.transform.position.x-1))
+        if (player.transform.position.x>=10&&player.transform.position.x<15)
         {
             DoorTrigger = true;
         }

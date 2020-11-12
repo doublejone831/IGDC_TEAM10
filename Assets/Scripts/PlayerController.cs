@@ -13,9 +13,6 @@ public class PlayerController : MonoBehaviour
     Animator anim;
 
     public AudioClip audioMove;
-    public AudioClip audioItem;
-    public AudioClip audioDie;
-    public AudioClip audioFinish;
 
     public PlayerData playerData;
     [ContextMenu("Into Json Data")]
@@ -25,7 +22,7 @@ public class PlayerController : MonoBehaviour
         string path = Path.Combine(Application.dataPath, "playerData.json");
         File.WriteAllText(path, jsonData);
     }
-
+    //데이터 저장코드, 아직 진행중이고, 활용 못하는 단계
     [ContextMenu("From File to game")]
 
     void LoadPlayerDataToJson()
@@ -47,15 +44,6 @@ public class PlayerController : MonoBehaviour
     {
         switch (action)
         {
-            case "ITEM":
-                audioSource.clip = audioItem;
-                break;
-            case "DIE":
-                audioSource.clip = audioDie;
-                break;
-            case "FINISH":
-                audioSource.clip = audioFinish;
-                break;
             case "MOVE":
                 audioSource.clip = audioMove;
                 break;
@@ -64,24 +52,24 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Mathf.Abs(player.velocity.x) <= 0.3 && (Mathf.Abs(player.velocity.y) <= 0.3))
+            audioSource.Stop();
         if (Input.GetButtonUp("Horizontal")) //Stop
         {
-            player.velocity = new Vector2(player.velocity.normalized.x * 0.5f, player.velocity.y);
-            PlaySound("MOVE");
-            audioSource.Play();
+            player.velocity = new Vector2(player.velocity.normalized.x * 0.5f, player.velocity.y);                
         }
         if (Input.GetButtonUp("Vertical")) //Stop
         {
-            player.velocity = new Vector2(player.velocity.normalized.x, player.velocity.y * 0.5f);
-            PlaySound("MOVE");
-            audioSource.Play();
+            player.velocity = new Vector2(player.velocity.normalized.x, player.velocity.y * 0.5f);              
         }
 
         if (Input.GetButton("Horizontal"))
         {
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == 1;
         }
+        //sound stop
+        
+        
 
 
 
@@ -89,6 +77,20 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        //walk sound on
+        if (Input.GetButtonDown("Horizontal"))
+        {
+            PlaySound("MOVE");
+            audioSource.Play();
+        }
+        if (Input.GetButtonDown("Vertical"))
+        {
+            PlaySound("MOVE");
+            audioSource.Play();
+        }
+       
+
         if (Mathf.Abs(player.velocity.x) < 0.3f)//Parameter change
         {
             anim.SetBool("isWalking", false);
