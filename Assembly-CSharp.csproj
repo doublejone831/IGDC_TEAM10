@@ -70,10 +70,10 @@
     <Compile Include="Assets\Scripts\MCScene.cs" />
     <Compile Include="Assets\Scripts\Main.cs" />
     <Compile Include="Assets\Scripts\MainUI.cs" />
+    <Compile Include="Assets\Scripts\MoveThroughDoor.cs" />
     <Compile Include="Assets\Scripts\ObjectPick.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\SceneLoader.cs" />
-    <Compile Include="Assets\Scripts\Tuto1DoorClick.cs" />
     <Compile Include="Assets\Scripts\inventory.cs" />
     <Compile Include="Assets\script.cs" />
     <Reference Include="UnityEngine">

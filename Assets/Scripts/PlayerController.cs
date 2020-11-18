@@ -52,8 +52,10 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //멈출 시 사운드 멈추기
         if (Mathf.Abs(player.velocity.x) <= 0.3 && (Mathf.Abs(player.velocity.y) <= 0.3))
             audioSource.Stop();
+        
         if (Input.GetButtonUp("Horizontal")) //Stop
         {
             player.velocity = new Vector2(player.velocity.normalized.x * 0.5f, player.velocity.y);                
@@ -67,7 +69,7 @@ public class PlayerController : MonoBehaviour
         {
             spriteRenderer.flipX = Input.GetAxisRaw("Horizontal") == 1;
         }
-        //sound stop
+    //수평키 입력시 x축 방향 flip = 뒤집기
         
         
 
