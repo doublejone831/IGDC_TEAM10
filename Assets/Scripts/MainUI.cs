@@ -32,7 +32,7 @@ public class MainUI : MonoBehaviour
     public void GameLoad()
     {
         if (!PlayerPrefs.HasKey("Player X"))
-            return 0;
+            return;
 
         float x = PlayerPrefs.GetFloat("Player X");
         float x = PlayerPrefs.GetFloat("Player Y");
